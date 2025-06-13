@@ -4,35 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Tab</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* Prevent scrolling on the body */
         body {
-            overflow: hidden; /* Disable scroll */
+            background-color: #0E121A;
+            overflow: hidden; /* Prevent scrolling on the body */
         }
-        /* Center image horizontally */
         .katana {
             position: absolute;
-            bottom: -85px; /* Adjust top position */
+            bottom: -85px;
             left: 50%;
-            transform: translateX(-50%); /* This will center the image horizontally */
-            width: 250px; /* You can adjust the size */
-            height: auto;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 250px;
+            background-image: url("assets/image.png");
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px; /* Rounded corners */
         }
-
+        .img {
+            height: 100%;
+            width: 50%;
+            background-image: url("./assets/vagabond.jpg");
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div>
-            <!-- Image centered horizontally -->
-            <img src="assets/image.png" alt="Image Description" class="katana">
-        </div>
         <div class="card_1">
             <div class="image">
                 <p>当たる も 八卦 当たらぬ も 八卦</p>
-                <!-- Image element added -->
+                <!-- Another div with background image and rounded corners -->
                 <div class="img"></div>
             </div>
         </div>
@@ -78,44 +84,35 @@
     </div>
 
     <script>
-        // JavaScript code for showing the time
         function startTime() {
             let today = new Date();
             let hours = today.getHours();
             let min = today.getMinutes();
             let sec = today.getSeconds();
 
-            // Convert hours to 12-hour format
             let period = "AM";
             if (hours >= 12) {
                 period = "PM";
                 if (hours > 12) {
-                    hours -= 12; // Convert to 12-hour format
+                    hours -= 12;
                 }
             } else if (hours === 0) {
-                hours = 12; // Midnight case
+                hours = 12;
             }
 
             min = checkTime(min);
             sec = checkTime(sec);
 
-            // Update the time and seconds on the webpage
             document.getElementById('txt').innerHTML = hours + ":" + min + " " + period;
             document.getElementById('seconds').innerHTML = sec;
 
-            // Refresh the time every second
             setTimeout(startTime, 1000);
         }
 
-        // Ensure time is always two digits
         function checkTime(i) {
-            if (i < 10) {
-                i = "0" + i; // Add a leading zero if needed
-            }
-            return i;
+            return (i < 10 ? "0" : "") + i;
         }
 
-        // Start the time when the page loads
         window.onload = startTime;
     </script>
 </body>
